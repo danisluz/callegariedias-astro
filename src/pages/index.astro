@@ -89,6 +89,7 @@ const siteTitle = 'Callegari & Dias Advocacia';
 const siteDescription = 'Callegari & Dias Advocacia: advocacia especializada e humanizada em Viamão/RS.';
 const ogImageURL = new URL('/og-callegari-dias.png', Astro.site);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
 ---
 
 <!DOCTYPE html>
@@ -123,6 +124,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    {turnstileSiteKey && (
+      <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    )}
     <style>
       :root {
         --bg: #f4f0e9;
@@ -1225,30 +1229,37 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
             <div class="reveal">
               <form class="contact-form" id="contact-form" novalidate>
-                <input type="text" name="website" value="" style="display:none" tabindex="-1" autocomplete="off" />
+                <div style="position:absolute; left:-9999px; top:-9999px;" aria-hidden="true">
+                  <label for="website">Não preencha este campo</label>
+                  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+                </div>
+                <input type="hidden" name="ts" id="form-ts" value="" />
                 <div style="display:grid;gap:18px;">
                   <div>
                     <label for="nome">Nome</label>
-                    <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required />
+                    <input id="nome" name="nome" type="text" placeholder="Seu nome completo" maxlength="100" required />
                   </div>
                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
                     <div>
                       <label for="email">E-mail</label>
-                      <input id="email" name="email" type="email" placeholder="seu@email.com" required />
+                      <input id="email" name="email" type="email" placeholder="seu@email.com" maxlength="150" required />
                     </div>
                     <div>
                       <label for="telefone">Telefone</label>
-                      <input id="telefone" name="telefone" type="tel" placeholder="(51) 9 0000-0000" />
+                      <input id="telefone" name="telefone" type="tel" placeholder="(51) 9 0000-0000" maxlength="20" />
                     </div>
                   </div>
                   <div>
                     <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva brevemente sua demanda" required></textarea>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva brevemente sua demanda" maxlength="2000" required></textarea>
                   </div>
                   <label class="consent-label" for="consentimento">
                     <input type="checkbox" id="consentimento" name="consentimento" required />
                     <span>Li e concordo com a <a href="/politica-de-privacidade" target="_blank" rel="noreferrer">Política de Privacidade</a> e autorizo o uso dos meus dados para fins de contato.</span>
                   </label>
+                  {turnstileSiteKey && (
+                    <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="light"></div>
+                  )}
                   <button class="button-primary" type="submit" style="margin-top:6px;width:100%;background:var(--teal-deep);">
                     Enviar mensagem
                   </button>
@@ -1427,6 +1438,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       const form = document.getElementById('contact-form');
       const formStatus = form?.querySelector('.form-status');
       const originalStatusText = formStatus?.textContent;
+      const formTs = document.getElementById('form-ts');
+      if (formTs) formTs.value = String(Date.now());
 
       form?.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -1446,6 +1459,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         if (!data.consentimento) {
           if (formStatus) {
             formStatus.textContent = 'É necessário concordar com a Política de Privacidade para enviar.';
+            formStatus.style.color = '#c75b43';
+          }
+          return;
+        }
+
+        if (form.querySelector('.cf-turnstile') && !data['cf-turnstile-response']) {
+          if (formStatus) {
+            formStatus.textContent = 'Aguarde a verificação de segurança terminar e tente novamente.';
             formStatus.style.color = '#c75b43';
           }
           return;
@@ -1471,6 +1492,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
               formStatus.style.color = '#1f9d55';
             }
             form.reset();
+            window.turnstile?.reset();
+            if (formTs) formTs.value = String(Date.now());
             setTimeout(() => {
               button.textContent = originalButtonText;
               button.style.background = 'var(--teal-deep)';
@@ -1486,6 +1509,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         } catch (err) {
           button.disabled = false;
           button.textContent = originalButtonText;
+          window.turnstile?.reset();
           if (formStatus) {
             formStatus.textContent = err instanceof Error ? err.message : 'Erro ao enviar mensagem. Tente novamente.';
             formStatus.style.color = '#c75b43';

@@ -1,0 +1,1381 @@
+---
+const services = [
+  {
+    icon: 'briefcase',
+    title: 'Ação Judicial',
+    text: 'Diagnóstico jurídico, análise de caso e a condução firme da sua demanda em juízo.'
+  },
+  {
+    icon: 'chart',
+    title: 'Análise e Estratégia',
+    text: 'Estudo aprofundado do caso e definição da melhor estratégia jurídica para a sua demanda.'
+  },
+  {
+    icon: 'building',
+    title: 'Atendimento',
+    text: 'Atendimento presencial ou online, com proximidade e clareza em cada etapa do processo.'
+  }
+];
+
+const practiceAreas = [
+  {
+    icon: 'building',
+    title: 'Assessoria Empresarial',
+    text: 'Consultivo e contencioso nas áreas comercial, trabalhista, bancária e outras demandas empresariais.'
+  },
+  {
+    icon: 'document',
+    title: 'Direito Civil',
+    text: 'Ações de cobrança, despejo, reintegração de posse, inventários, usucapião e demais demandas cíveis.'
+  },
+  {
+    icon: 'users',
+    title: 'Direito da Família',
+    text: 'Inventário, holding familiar, testamentos e divórcios nas esferas administrativa e judicial.'
+  },
+  {
+    icon: 'briefcase',
+    title: 'Direito Trabalhista',
+    text: 'Atuação com conhecimento especializado, foco na minimização de riscos e em reclamatórias trabalhistas.'
+  },
+  {
+    icon: 'user-check',
+    title: 'Direito Previdenciário',
+    text: 'Aposentadorias, auxílio-doença, auxílio-acidente e pensões, com atuação eficaz nas fases administrativa e judicial.'
+  }
+];
+
+const gallery = [
+  { src: '/fotos/recepcao-logo.png', alt: 'Recepção Callegari & Dias', span: 'tall' },
+  { src: '/fotos/sala-reuniao.png', alt: 'Sala de reunião', span: 'tall' },
+  { src: '/fotos/recepcao-espera.png', alt: 'Sala de espera', span: 'tall' },
+  { src: '/fotos/quadros.png', alt: 'Detalhes do escritório', span: 'wide' },
+  { src: '/fotos/quadro-arvore.png', alt: 'Ambiente de trabalho', span: 'tall' },
+  { src: '/fotos/fachada.png', alt: 'Fachada Bento Gonçalves Corporate, 708', span: 'wide', caption: 'Bento Gonçalves Corporate · nº 708 — Viamão/RS' }
+];
+
+const slides = [
+  {
+    eyebrow: 'Viamão / RS · OAB/RS 9.970',
+    line1: 'Advocacia especializada',
+    line2: '',
+    accent: 'e humanizada',
+    text: 'Serviços jurídicos com o mais alto padrão de qualidade e excelência, dedicados a defender seus interesses com compromisso ético e visão estratégica.',
+    maxWidth: 800
+  },
+  {
+    eyebrow: 'Lutamos por justiça',
+    line1: 'Especializados em advocacia',
+    line2: 'empresarial ',
+    accent: 'desde 2014.',
+    text: 'Localizados estrategicamente próximo ao foro da comarca de Viamão, com assessoria e consultoria empresarial qualificada.',
+    maxWidth: 820
+  },
+  {
+    eyebrow: 'Correspondente jurídico',
+    line1: 'Diligências e audiências em',
+    line2: 'Viamão e a ',
+    accent: 'Grande Porto Alegre.',
+    text: 'Atendemos escritórios parceiros de todo o país, com agilidade, técnica e total confiança.',
+    maxWidth: 840
+  }
+];
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Callegari & Dias Advocacia</title>
+    <meta
+      name="description"
+      content="Callegari & Dias Advocacia: advocacia especializada e humanizada em Viamão/RS."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f4f0e9;
+        --bg-strong: #0a2a31;
+        --teal: #0e3640;
+        --teal-deep: #103a43;
+        --teal-soft: #12404b;
+        --accent: #c75b43;
+        --accent-soft: #e0a99b;
+        --text: #1c2326;
+        --muted: #5c666a;
+        --line: #d9d1c2;
+        --shadow: 0 30px 70px -35px rgba(10, 42, 49, 0.45);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Manrope', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      ::selection { background: var(--accent); color: #fff; }
+      img { max-width: 100%; display: block; }
+      a { color: inherit; }
+      section, header { scroll-margin-top: 96px; }
+
+      .page {
+        position: relative;
+        overflow: clip;
+      }
+
+      .container {
+        width: min(1240px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.85s cubic-bezier(0.16, 0.84, 0.32, 1), transform 0.85s cubic-bezier(0.16, 0.84, 0.32, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 22px clamp(20px, 5vw, 72px);
+        transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .nav.is-scrolled {
+        padding: 14px clamp(20px, 5vw, 72px);
+        background: rgba(10, 42, 49, 0.92);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(18px, 2.4vw, 40px);
+      }
+
+      .nav-link {
+        text-decoration: none;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .nav-link:hover { color: #fff; }
+      .button-primary {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        font-size: 14.5px;
+        letter-spacing: 0.3px;
+        padding: 18px 32px;
+        border-radius: 2px;
+        border: 0;
+        transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      }
+
+      .button-primary:hover {
+        background: #b04d37;
+        transform: translateY(-2px);
+      }
+
+      .button-ghost {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 14.5px;
+        letter-spacing: 0.3px;
+        padding: 18px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        transition: border-color 0.3s ease;
+      }
+
+      .button-ghost:hover { border-color: var(--accent); }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg-strong);
+        padding-top: 110px;
+        padding-bottom: 130px;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transform: scale(1.08);
+        animation: kenburns 18s ease-out forwards;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(105deg, rgba(8, 40, 47, 0.94) 0%, rgba(8, 40, 47, 0.78) 45%, rgba(8, 40, 47, 0.42) 100%),
+          linear-gradient(0deg, rgba(8, 40, 47, 0.85) 0%, rgba(8, 40, 47, 0) 38%);
+      }
+
+      .hero-slides {
+        position: relative;
+        z-index: 2;
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 42px;
+        height: 1px;
+        background: var(--accent);
+        flex: 0 0 auto;
+      }
+
+      .eyebrow span {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        color: var(--accent-soft);
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        margin: 0;
+        font-family: 'Spectral', serif;
+        font-weight: 400;
+        font-size: clamp(36px, min(6.2vw, 7.2vh), 82px);
+        line-height: 1.04;
+        color: #fff;
+        letter-spacing: -1px;
+      }
+
+      .hero-line {
+        display: block;
+      }
+
+      .hero-accent {
+        font-style: italic;
+        font-weight: 300;
+        color: #e9e2d6;
+      }
+
+      .hero-text {
+        margin-top: 28px;
+        max-width: 500px;
+        font-size: clamp(15px, 1.5vw, 18px);
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .hero-actions {
+        margin-top: 42px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .hero-controls {
+        position: relative;
+        z-index: 6;
+        flex: 0 0 auto;
+      }
+
+      .hero-controls-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .dots {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+      }
+
+      .dot {
+        height: 4px;
+        width: 10px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 2px;
+        transition: all 0.4s ease;
+      }
+
+      .dot.is-active {
+        width: 34px;
+        background: var(--accent);
+      }
+
+      .arrow {
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .arrow:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1.1s ease;
+      }
+
+      .slide.is-active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .slide-inner {
+        max-width: 640px;
+      }
+
+      .feature-strip {
+        position: relative;
+        z-index: 5;
+        margin-top: -90px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .feature-card {
+        padding: clamp(32px, 3.5vw, 52px);
+        border-top: 3px solid var(--accent);
+        border-right: 1px solid #ece6db;
+        background: #fff;
+      }
+
+      .feature-card:last-child { border-right: 0; }
+
+      .feature-icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        margin-bottom: 24px;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: clamp(40px, 6vw, 90px);
+        align-items: center;
+      }
+
+      .heading {
+        margin: 0;
+        font-family: 'Spectral', serif;
+        font-weight: 400;
+        font-size: clamp(34px, 4.4vw, 56px);
+        line-height: 1.08;
+        color: var(--teal-deep);
+        letter-spacing: -0.5px;
+      }
+
+      .heading-compact {
+        font-size: clamp(32px, 4.2vw, 52px);
+        line-height: 1.1;
+      }
+
+      .section-copy {
+        font-size: 16.5px;
+        line-height: 1.85;
+        color: #4a5458;
+      }
+
+      .quote-card {
+        margin-top: 30px;
+        padding: 26px 30px;
+        background: #fff;
+        border-left: 3px solid var(--accent);
+        box-shadow: 0 20px 50px -30px rgba(10, 42, 49, 0.4);
+      }
+
+      .areas {
+        background: var(--teal);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .areas::before {
+        content: '';
+        position: absolute;
+        inset: 0 0 auto auto;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      }
+
+      .areas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: clamp(40px, 5vw, 70px);
+      }
+
+      .areas-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      .area-card {
+        background: var(--teal);
+        padding: clamp(28px, 2.6vw, 40px);
+        transition: background 0.35s ease, transform 0.35s ease;
+      }
+
+      .area-card:hover { background: var(--teal-soft); transform: translateY(-2px); }
+      .area-card strong, .area-card h3 {
+        font-family: 'Spectral', serif;
+        font-weight: 500;
+      }
+
+      .cta-band {
+        background: linear-gradient(180deg, var(--teal) 0%, var(--teal) 50%, var(--bg) 50%, var(--bg) 100%);
+      }
+
+      .cta-panel {
+        background: #fff;
+        box-shadow: 0 30px 70px -35px rgba(10, 42, 49, 0.45);
+        padding: clamp(34px, 4vw, 56px);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+      }
+
+      .cta-title {
+        margin: 0;
+        font-family: 'Spectral', serif;
+        font-weight: 500;
+        font-size: clamp(24px, 2.8vw, 34px);
+        color: var(--teal-deep);
+        line-height: 1.15;
+      }
+
+      .office-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 220px;
+        grid-auto-flow: dense;
+        gap: 6px;
+      }
+
+      .office-card {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        background: var(--teal);
+      }
+
+      .office-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.16, 0.84, 0.32, 1);
+      }
+
+      .office-card:hover img { transform: scale(1.06); }
+
+      .office-card.is-tall { grid-row: span 2; }
+      .office-card.is-wide { grid-column: span 2; }
+
+      .contact-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: clamp(48px, 6vw, 90px);
+      }
+
+      .contact-form {
+        background: var(--bg);
+        padding: clamp(28px, 3.5vw, 44px);
+        border-top: 3px solid var(--accent);
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        background: #fff;
+        font-family: inherit;
+        font-size: 15px;
+        color: var(--text);
+        outline: none;
+        border-radius: 2px;
+        transition: border-color 0.2s ease;
+      }
+
+      input:focus, textarea:focus { border-color: var(--accent); }
+      textarea { resize: vertical; }
+
+      .map-link {
+        text-decoration: none;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        background: var(--teal);
+        padding: clamp(28px, 3.5vw, 44px) clamp(28px, 4vw, 52px);
+        transition: background 0.3s ease;
+      }
+
+      .map-link:hover { background: var(--teal-deep); }
+
+      footer {
+        background: var(--bg-strong);
+        color: #fff;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 48px;
+        align-items: start;
+      }
+
+      .footer-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accent-soft);
+        margin-bottom: 20px;
+      }
+
+      .socials {
+        display: flex;
+        gap: 13px;
+      }
+
+      .social {
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+
+      .social:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .social-on-light {
+        border-color: var(--line);
+        color: var(--teal-deep);
+      }
+
+      .social-on-light:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .footer-bottom {
+        margin-top: clamp(40px, 5vw, 64px);
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .muted {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        color: #fff;
+        border-radius: 2px;
+      }
+
+      .mobile-panel {
+        display: none;
+      }
+
+      @keyframes kenburns {
+        from { transform: scale(1.08); }
+        to { transform: scale(1.18); }
+      }
+
+      @media (max-width: 1100px) {
+        .nav-links {
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 880px) {
+        .nav {
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .mobile-panel:not([hidden]) {
+          display: grid;
+          width: 100%;
+          gap: 12px;
+          padding: 14px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(8, 40, 47, 0.96);
+          border-radius: 8px;
+          margin-top: 8px;
+        }
+
+        .mobile-panel a {
+          text-decoration: none;
+          color: rgba(255, 255, 255, 0.85);
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .feature-strip { margin-top: -42px; }
+        .hero { padding-top: 100px; padding-bottom: 70px; }
+        .hero-controls-inner, .cta-panel { flex-direction: column; align-items: flex-start; }
+        .button-primary { width: 100%; }
+        .hero-title {
+          font-size: clamp(34px, 8vw, 56px);
+        }
+        .slide-inner {
+          max-width: 100% !important;
+        }
+        .office-gallery {
+          grid-template-columns: 1fr;
+          grid-auto-rows: 220px;
+        }
+        .office-card.is-tall,
+        .office-card.is-wide {
+          grid-row: span 1;
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: 768px) and (max-height: 700px) {
+        .hero { padding-top: 80px; padding-bottom: 56px; }
+        .eyebrow { margin-bottom: 16px; }
+        .hero-text { margin-top: 14px; }
+        .hero-actions { margin-top: 20px; }
+      }
+
+      @media (max-height: 480px) {
+        .hero { padding-top: 54px; padding-bottom: 50px; }
+        .nav { padding: 8px clamp(16px, 4vw, 40px); }
+        .brand img { height: 18px !important; }
+        .eyebrow { margin-bottom: 6px; }
+        .hero-title {
+          font-size: clamp(16px, 5vh, 24px);
+          line-height: 1.15;
+        }
+        .hero-text {
+          display: none;
+        }
+        .hero-actions {
+          margin-top: 10px;
+          gap: 10px;
+        }
+        .hero-actions .button-primary {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+        .hero-actions .button-ghost {
+          padding: 8px 6px;
+          font-size: 12px;
+        }
+        .arrow {
+          width: 36px;
+          height: 36px;
+        }
+      }
+
+      @media (max-height: 700px) and (min-width: 769px) {
+        .hero { padding-top: 96px; padding-bottom: 110px; }
+        .eyebrow { margin-bottom: 16px; }
+        .hero-text { margin-top: 14px; }
+        .hero-actions { margin-top: 20px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header id="topo" class="hero">
+        <img class="hero-bg" src="/fotos/fachada.png" alt="" aria-hidden="true" />
+        <div class="hero-overlay"></div>
+        <nav class="nav" aria-label="Principal">
+          <a href="#topo" class="brand" aria-label="Callegari & Dias Advocacia">
+            <img src="/logo.svg" alt="Callegari & Dias Advogados" style="height: 26px; width: auto;" />
+          </a>
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 7h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 17h16"></path>
+            </svg>
+          </button>
+          <div class="nav-links">
+            <a href="#sobre" class="nav-link">Sobre</a>
+            <a href="#areas" class="nav-link">Áreas de Atuação</a>
+            <a href="#escritorio" class="nav-link">Nosso Espaço</a>
+            <a href="#contato" class="nav-link">Contato</a>
+            <a href="#contato" class="button-primary" style="padding: 12px 22px; font-size: 13px;">Fale Conosco</a>
+          </div>
+          <div id="mobile-nav" class="mobile-panel" hidden>
+            <a href="#sobre">Sobre</a>
+            <a href="#areas">Áreas de Atuação</a>
+            <a href="#escritorio">Nosso Espaço</a>
+            <a href="#contato">Contato</a>
+          </div>
+        </nav>
+
+        <div class="hero-slides">
+          {slides.map((slide, index) => (
+            <div class={`slide ${index === 0 ? 'is-active' : ''}`} data-slide={index}>
+              <div class="container">
+                <div class="slide-inner" style={`max-width: ${slide.maxWidth}px;`}>
+                  <div class="eyebrow"><span>{slide.eyebrow}</span></div>
+                  <h1 class="hero-title">
+                    <span class="hero-line">{slide.line1}</span>
+                    <span class="hero-line">{slide.line2}<span class="hero-accent">{slide.accent}</span></span>
+                  </h1>
+                  <p class="hero-text">{slide.text}</p>
+                  <div class="hero-actions">
+                    <a href="#contato" class="button-primary">
+                      Chame Agora
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                      </svg>
+                    </a>
+                    <a href="#areas" class="button-ghost">Conheça nossas áreas →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="hero-controls">
+          <div class="container hero-controls-inner">
+            <div class="dots" aria-label="Controle do banner">
+              {slides.map((_, index) => (
+                <button class={`dot ${index === 0 ? 'is-active' : ''}`} type="button" aria-label={`Banner ${index + 1}`} data-dot={index}></button>
+              ))}
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button class="arrow" type="button" data-dir="prev" aria-label="Anterior">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button class="arrow" type="button" data-dir="next" aria-label="Próximo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="feature-strip">
+        <div class="container">
+          <div class="feature-grid">
+            {services.map((service) => (
+              <article class="feature-card reveal">
+                <div class="feature-icon">
+                  {service.icon === 'briefcase' && (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                  )}
+                  {service.icon === 'chart' && (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                  )}
+                  {service.icon === 'building' && (
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 21h18"></path>
+                      <path d="M5 21V7l7-4 7 4v14"></path>
+                      <path d="M9 21v-6h6v6"></path>
+                      <path d="M9 11h.01M15 11h.01"></path>
+                    </svg>
+                  )}
+                </div>
+                <h3 style="font-family:'Spectral',serif;font-weight:500;font-size:23px;color:var(--teal-deep);margin:0 0 12px;">{service.title}</h3>
+                <p style="font-size:15px;line-height:1.65;color:#5c666a;margin:0;">{service.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <div class="container" style="padding: clamp(80px, 9vw, 140px) 0;">
+          <div class="section-grid">
+            <div class="reveal" style="position:relative;max-width:480px;">
+              <img src="/fotos/justica.png" alt="Estátua da justiça" style="width:100%; aspect-ratio:1.28; object-fit:cover; box-shadow:0 40px 80px -40px rgba(10,42,49,0.55);" />
+              <div style="position:absolute;bottom:-26px;right:-26px;width:96px;height:96px;background:var(--accent);z-index:-1;"></div>
+              <div style="position:absolute;top:-22px;left:-22px;width:64px;height:64px;border:1px solid #c9c0b0;z-index:-1;"></div>
+            </div>
+            <div>
+              <div class="eyebrow reveal" style="margin-bottom:22px;"><span>Porque escolher-nos</span></div>
+              <h2 class="heading reveal">Inteligência jurídica</h2>
+              <p class="section-copy reveal" style="margin-top:30px;">
+                Nunca nos afastamos do nosso propósito principal, que é o compromisso de longo prazo: oferecer serviços jurídicos com o mais alto padrão de qualidade e excelência.
+              </p>
+              <p class="section-copy reveal" style="margin-top:20px;">
+                Nossos advogados e colaboradores são altamente motivados a contribuir para o sucesso de nossos clientes. Trabalhamos com uma abordagem integrada e equipes cuidadosamente adaptadas às necessidades de cada cliente e de cada projeto específico.
+              </p>
+              <div class="reveal" style="margin-top:38px;display:flex;align-items:center;gap:18px;padding-top:30px;border-top:1px solid #e1dacc;">
+                <div style="width:56px;height:56px;border-radius:50%;background:var(--teal-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-size:20px;flex-shrink:0;">RD</div>
+                <div>
+                  <div style="font-weight:700;font-size:15.5px;">Robson Dias</div>
+                  <div style="font-size:13.5px;color:#7a8488;margin-top:2px;">Advogado, sócio diretor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="areas" class="areas">
+        <div class="container" style="padding: clamp(80px, 9vw, 130px) 0;">
+          <div class="areas-grid">
+            <div style="max-width:380px;">
+              <div class="eyebrow reveal"><span>Áreas de atuação</span></div>
+              <h2 class="heading heading-compact reveal" style="color:#fff;">Atuamos nas seguintes áreas</h2>
+              <p class="section-copy reveal" style="margin-top:26px; color:rgba(255,255,255,0.68); max-width:330px;">
+                Assessoria e contencioso com domínio técnico em cada especialidade — sempre orientados ao melhor resultado para o cliente.
+              </p>
+              <a href="#contato" class="button-ghost reveal" style="margin-top:34px;">Falar com um advogado →</a>
+            </div>
+
+            <div class="areas-cards">
+              {practiceAreas.map((area) => (
+                <article class="area-card reveal">
+                  <div style="color:var(--accent);margin-bottom:20px;">
+                    {area.icon === 'building' && (
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18"></path>
+                        <path d="M5 21V7l7-4 7 4v14"></path>
+                        <path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"></path>
+                      </svg>
+                    )}
+                    {area.icon === 'document' && (
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="9" y1="13" x2="15" y2="13"></line>
+                        <line x1="9" y1="17" x2="13" y2="17"></line>
+                      </svg>
+                    )}
+                    {area.icon === 'users' && (
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                    )}
+                    {area.icon === 'briefcase' && (
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                      </svg>
+                    )}
+                    {area.icon === 'user-check' && (
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                    )}
+                  </div>
+                  <h3 style="margin:0 0 11px;color:#fff;font-size:21px;">{area.title}</h3>
+                  <p style="margin:0;font-size:14px;line-height:1.65;color:rgba(255,255,255,0.62);">{area.text}</p>
+                </article>
+              ))}
+              <article class="area-card reveal" style="background:var(--accent);display:flex;flex-direction:column;justify-content:center;">
+                <h3 style="margin:0 0 11px;color:#fff;font-size:21px;">Sua demanda<br />não está aqui?</h3>
+                <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:rgba(255,255,255,0.85);">Fale com nossa equipe e avaliaremos o seu caso.</p>
+                <a href="#contato" style="text-decoration:none;font-weight:700;font-size:13.5px;color:#fff;letter-spacing:0.3px;">Entrar em contato →</a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="container">
+          <div class="reveal cta-panel">
+            <div style="display:flex;align-items:center;gap:26px;flex:1;min-width:280px;">
+              <div style="width:68px;height:68px;border-radius:50%;background:var(--teal);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="cta-title">Podemos ajudar você. Ligue agora.</h3>
+                <p style="margin-top:8px;font-size:14.5px;color:#5c666a;letter-spacing:0.2px;">Agende uma consulta jurídica com um de nossos advogados · (51) 3046-6706</p>
+              </div>
+            </div>
+            <a href="tel:+555130466706" class="button-primary">Ligar Agora</a>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container" style="padding: clamp(80px, 9vw, 130px) 0;">
+          <div class="section-grid" style="align-items:start;">
+            <div>
+              <div class="eyebrow reveal"><span>Sobre nós</span></div>
+              <h2 class="heading reveal">Callegari <span style="color:var(--accent);">&amp;</span> Dias Advocacia</h2>
+              <p class="section-copy reveal" style="margin-top:26px;">
+                O escritório <strong style="color:var(--text);font-weight:600;">Callegari & Dias Assessoria</strong> surge com a responsabilidade de atender seus clientes na esfera administrativa e judicial. Através de assessoria qualificada e consultoria jurídica, empenha-se em satisfazer os interesses de seus clientes com compromisso ético e moral.
+              </p>
+              <div class="reveal" style="margin-top:40px;display:flex;gap:clamp(28px,4vw,52px);flex-wrap:wrap;">
+                <div>
+                  <div style="font-family:'Spectral',serif;font-size:clamp(40px,5vw,58px);font-weight:400;color:var(--accent);line-height:1;">2014</div>
+                  <div style="margin-top:8px;font-size:13.5px;color:#5c666a;max-width:150px;">ano de fundação do escritório</div>
+                </div>
+                <div>
+                  <div style="font-family:'Spectral',serif;font-size:clamp(40px,5vw,58px);font-weight:400;color:var(--accent);line-height:1;">5</div>
+                  <div style="margin-top:8px;font-size:13.5px;color:#5c666a;max-width:150px;">áreas de atuação especializadas</div>
+                </div>
+                <div>
+                  <div style="font-family:'Spectral',serif;font-size:clamp(40px,5vw,58px);font-weight:400;color:var(--accent);line-height:1;">100%</div>
+                  <div style="margin-top:8px;font-size:13.5px;color:#5c666a;max-width:150px;">compromisso ético e dedicação</div>
+                </div>
+              </div>
+              <a href="#contato" class="reveal button-ghost" style="margin-top:40px;color:var(--teal-deep);border-color:var(--accent);border-bottom-width:2px;text-transform:uppercase;font-size:14px;font-weight:700;">Fale com o escritório →</a>
+            </div>
+            <div>
+              <p class="section-copy reveal">
+                Diante da experiência e do conhecimento adquirido, nossos colaboradores proporcionam um atendimento com visão estratégica, inteligência e o dinamismo necessário para a defesa dos nossos clientes.
+              </p>
+              <p class="section-copy reveal" style="margin-top:20px;">
+                Atuando nas diversas áreas do direito, advogados especializados oferecem aos seus clientes e parceiros um serviço personalizado e de qualidade.
+              </p>
+              <div class="reveal quote-card">
+                <p style="margin:0;font-size:16px;line-height:1.8;color:#1c2326;">
+                  Localizado estrategicamente <strong style="font-weight:600;">próximo ao foro da comarca de Viamão</strong>, o escritório atende na esfera administrativa e judicial com assessoria qualificada e consultoria empresarial.
+                </p>
+              </div>
+              <p class="section-copy reveal" style="margin-top:24px;">
+                Disponibilizamos ainda o serviço de <strong style="color:var(--text);font-weight:600;">correspondente jurídico</strong>, realizando diligências e audiências na cidade de Viamão/RS e região metropolitana de Porto Alegre, atendendo escritórios parceiros de todo o país.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="escritorio" style="background:var(--bg);">
+        <div class="container" style="padding: clamp(20px, 3vw, 40px) 0 clamp(80px, 9vw, 120px);">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(36px,4vw,56px);">
+            <div>
+              <div class="eyebrow reveal" style="margin-bottom:22px;"><span>Nosso espaço</span></div>
+              <h2 class="heading heading-compact reveal">Conheça o escritório</h2>
+            </div>
+            <p class="section-copy reveal" style="max-width:380px;font-size:15.5px;">
+              Estamos no <strong style="color:var(--text);font-weight:600;">Bento Gonçalves Corporate</strong>, nº 708 — um ambiente moderno e acolhedor, pensado para receber você com privacidade e conforto.
+            </p>
+          </div>
+
+          <div class="office-gallery">
+            {gallery.map((item) => (
+              <figure class={`office-card reveal ${item.span === 'tall' ? 'is-tall' : ''} ${item.span === 'wide' ? 'is-wide' : ''}`}>
+                <img src={item.src} alt={item.alt} loading="lazy" />
+                {item.caption && <figcaption style="position:absolute;left:0;bottom:0;right:0;padding:18px 22px;background:linear-gradient(0deg, rgba(8,40,47,0.82), transparent);color:#fff;font-size:13px;font-weight:600;letter-spacing:0.3px;">{item.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" style="background:#fff;">
+        <div class="container" style="padding: clamp(80px, 9vw, 130px) 0;">
+          <div class="contact-layout">
+            <div>
+              <div class="eyebrow reveal"><span>Fale conosco</span></div>
+              <h2 class="heading heading-compact reveal">Queremos melhor lhe atender</h2>
+              <p class="section-copy reveal" style="margin-top:26px;max-width:440px;">
+                Venha até nosso escritório, ligue, mande um WhatsApp ou preencha o formulário com seus dados. Responderemos o mais breve possível.
+              </p>
+
+              <div class="reveal" style="margin-top:44px;display:flex;flex-direction:column;gap:26px;">
+                <div style="display:flex;align-items:flex-start;gap:18px;">
+                  <div style="color:var(--accent);flex-shrink:0;margin-top:2px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-weight:700;font-size:14px;letter-spacing:0.2px;">Av. Bento Gonçalves, 708</div>
+                    <div style="font-size:14.5px;color:#5c666a;line-height:1.6;margin-top:3px;">Salas 811 e 812 — Centro<br />Viamão / RS · 94410-400</div>
+                  </div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:18px;">
+                  <div style="color:var(--accent);flex-shrink:0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </div>
+                  <a href="tel:+555130466706" style="text-decoration:none;font-weight:700;font-size:16px;color:var(--teal-deep);">+55 51 3046-6706</a>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:18px;">
+                  <div style="color:#1f9d55;flex-shrink:0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.821 11.821 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.978-1.607z"></path>
+                    </svg>
+                  </div>
+                  <a href="https://wa.me/555130466706" target="_blank" rel="noreferrer" style="text-decoration:none;font-weight:700;font-size:16px;color:var(--teal-deep);">WhatsApp · (51) 3046-6706</a>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:18px;">
+                  <div style="color:var(--accent);flex-shrink:0;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <a href="mailto:adv.guilhermecallegari@gmail.com" style="text-decoration:none;font-weight:700;font-size:16px;color:var(--teal-deep);word-break:break-all;">adv.guilhermecallegari@gmail.com</a>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:14px;padding-top:6px;">
+                  <a href="https://www.instagram.com/callegariedias" target="_blank" rel="noreferrer" aria-label="Instagram" class="social social-on-light">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </a>
+                  <a href="https://www.facebook.com/callegariediasadvogados" target="_blank" rel="noreferrer" aria-label="Facebook" class="social social-on-light">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal">
+              <form class="contact-form">
+                <div style="display:grid;gap:18px;">
+                  <div>
+                    <label for="nome">Nome</label>
+                    <input id="nome" type="text" placeholder="Seu nome completo" />
+                  </div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+                    <div>
+                      <label for="email">E-mail</label>
+                      <input id="email" type="email" placeholder="seu@email.com" />
+                    </div>
+                    <div>
+                      <label for="telefone">Telefone</label>
+                      <input id="telefone" type="tel" placeholder="(51) 9 0000-0000" />
+                    </div>
+                  </div>
+                  <div>
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" rows="4" placeholder="Descreva brevemente sua demanda"></textarea>
+                  </div>
+                  <button class="button-primary" type="submit" style="margin-top:6px;width:100%;background:var(--teal-deep);">
+                    Enviar mensagem
+                  </button>
+                  <p style="font-size:12px;color:#9aa0a2;text-align:center;margin:0;">Seus dados são tratados com total sigilo profissional.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" style="padding-bottom: clamp(60px, 7vw, 100px);">
+          <a href="https://www.google.com/maps?cid=8791871453184885392&hl=pt-BR" target="_blank" rel="noreferrer" class="map-link">
+            <div style="display:flex;align-items:center;gap:22px;">
+              <div style="width:60px;height:60px;border-radius:50%;background:rgba(199,91,67,0.15);color:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <div style="font-family:'Spectral',serif;font-size:clamp(20px,2.2vw,26px);color:#fff;">Av. Bento Gonçalves, 708 — Salas 811 e 812</div>
+                <div style="margin-top:6px;font-size:14px;color:rgba(255,255,255,0.6);">Bento Gonçalves Corporate · Centro, Viamão / RS · 94410-400</div>
+              </div>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:14px;letter-spacing:0.3px;border:1px solid rgba(255,255,255,0.28);padding:14px 24px;border-radius:2px;flex-shrink:0;">Como chegar
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container" style="padding: clamp(56px, 6vw, 80px) 0;">
+          <div class="footer-grid">
+            <div style="max-width:300px;">
+              <img src="/logo.svg" alt="Callegari & Dias Advogados" style="height:30px;width:auto;" />
+              <p style="margin-top:22px;font-size:14px;line-height:1.7;color:rgba(255,255,255,0.6);">Advocacia especializada e humanizada, com compromisso ético e visão estratégica.</p>
+            </div>
+            <div>
+              <div class="footer-title">Navegação</div>
+              <div style="display:flex;flex-direction:column;gap:13px;">
+                <a href="#topo" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Início</a>
+                <a href="#sobre" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Sobre</a>
+                <a href="#areas" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Áreas de Atuação</a>
+                <a href="#contato" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Contato</a>
+              </div>
+            </div>
+            <div>
+              <div class="footer-title">Contato</div>
+              <div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;color:rgba(255,255,255,0.75);line-height:1.5;">
+                <span>Av. Bento Gonçalves, 708<br />Salas 811 e 812 — Viamão/RS</span>
+                <a href="tel:+555130466706" style="text-decoration:none;color:rgba(255,255,255,0.75);">+55 51 3046-6706</a>
+                <a href="https://wa.me/555130466706" target="_blank" rel="noreferrer" style="text-decoration:none;color:rgba(255,255,255,0.75);">WhatsApp</a>
+                <a href="mailto:adv.guilhermecallegari@gmail.com" style="text-decoration:none;color:rgba(255,255,255,0.75);word-break:break-all;">adv.guilhermecallegari@gmail.com</a>
+              </div>
+            </div>
+            <div>
+              <div class="footer-title">Redes Sociais</div>
+              <div class="socials">
+                <a href="https://www.instagram.com/callegariedias" target="_blank" rel="noreferrer" aria-label="Instagram" class="social">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://www.facebook.com/callegariediasadvogados" target="_blank" rel="noreferrer" aria-label="Facebook" class="social">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <span style="font-size:13px;color:rgba(255,255,255,0.45);">© 2026 Callegari & Dias Advogados. Todos os direitos reservados.</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.45);">Em conformidade com o Provimento da OAB.</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script is:inline>
+      const nav = document.querySelector('.nav');
+      const revealEls = document.querySelectorAll('.reveal');
+      const dots = [...document.querySelectorAll('.dot')];
+      const slides = [...document.querySelectorAll('[data-slide]')];
+      const hero = document.querySelector('.hero');
+      const arrows = [...document.querySelectorAll('[data-dir]')];
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobilePanel = document.getElementById('mobile-nav');
+      let current = 0;
+      let timer = null;
+
+      const show = (index) => {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === current;
+          slide.classList.toggle('is-active', active);
+        });
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === current);
+        });
+      };
+
+      const resetTimer = () => {
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => show(current + 1), 6500);
+      };
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          show(index);
+          resetTimer();
+        });
+      });
+
+      arrows.forEach((arrow) => {
+        arrow.addEventListener('click', () => {
+          show(current + (arrow.dataset.dir === 'next' ? 1 : -1));
+          resetTimer();
+        });
+      });
+
+      hero?.addEventListener('mouseenter', () => timer && clearInterval(timer));
+      hero?.addEventListener('mouseleave', resetTimer);
+      show(0);
+      resetTimer();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+
+      revealEls.forEach((el) => observer.observe(el));
+
+      const handleScroll = () => {
+        if (!nav) return;
+        nav.classList.toggle('is-scrolled', window.scrollY > 60);
+      };
+
+      handleScroll();
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      navToggle?.addEventListener('click', () => {
+        const isOpen = mobilePanel.hasAttribute('hidden') === false;
+        if (isOpen) {
+          mobilePanel.setAttribute('hidden', '');
+          navToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          mobilePanel.removeAttribute('hidden');
+          navToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      mobilePanel?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobilePanel.setAttribute('hidden', '');
+          navToggle?.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const form = document.querySelector('form');
+      form?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const button = form.querySelector('button[type="submit"]');
+        if (!button) return;
+        const original = button.textContent;
+        button.textContent = 'Mensagem enviada ✓';
+        button.style.background = '#1f9d55';
+        setTimeout(() => {
+          button.textContent = original;
+          button.style.background = 'var(--teal-deep)';
+          form.reset();
+        }, 2400);
+      });
+    </script>
+  </body>
+</html>

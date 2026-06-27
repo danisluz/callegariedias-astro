@@ -80,6 +80,11 @@ const slides = [
     maxWidth: 840
   }
 ];
+
+const siteTitle = 'Callegari & Dias Advocacia';
+const siteDescription = 'Callegari & Dias Advocacia: advocacia especializada e humanizada em Viamão/RS.';
+const ogImageURL = new URL('/og-callegari-dias.png', Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -87,11 +92,27 @@ const slides = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Callegari & Dias Advocacia</title>
-    <meta
-      name="description"
-      content="Callegari & Dias Advocacia: advocacia especializada e humanizada em Viamão/RS."
-    />
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImageURL} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

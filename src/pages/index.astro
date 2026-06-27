@@ -1,6 +1,8 @@
 ---
 export const prerender = true;
 
+import CookieConsent from '../components/CookieConsent.astro';
+
 const services = [
   {
     icon: 'briefcase',
@@ -594,6 +596,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         text-transform: uppercase;
         color: var(--muted);
         margin-bottom: 8px;
+      }
+
+      .consent-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: normal;
+        text-transform: none;
+        color: var(--muted);
+        line-height: 1.5;
+        cursor: pointer;
+        margin-bottom: 0;
+      }
+
+      .consent-label input {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
+
+      .consent-label a {
+        color: var(--teal-deep);
+        font-weight: 700;
+        text-decoration: underline;
       }
 
       input, textarea {
@@ -1214,6 +1245,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                     <label for="mensagem">Mensagem</label>
                     <textarea id="mensagem" name="mensagem" rows="4" placeholder="Descreva brevemente sua demanda" required></textarea>
                   </div>
+                  <label class="consent-label" for="consentimento">
+                    <input type="checkbox" id="consentimento" name="consentimento" required />
+                    <span>Li e concordo com a <a href="/politica-de-privacidade" target="_blank" rel="noreferrer">Política de Privacidade</a> e autorizo o uso dos meus dados para fins de contato.</span>
+                  </label>
                   <button class="button-primary" type="submit" style="margin-top:6px;width:100%;background:var(--teal-deep);">
                     Enviar mensagem
                   </button>
@@ -1262,6 +1297,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 <a href="#sobre" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Sobre</a>
                 <a href="#areas" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Áreas de Atuação</a>
                 <a href="#contato" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Contato</a>
+                <a href="/politica-de-privacidade" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Política de Privacidade</a>
               </div>
             </div>
             <div>
@@ -1293,11 +1329,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           </div>
           <div class="footer-bottom">
             <span style="font-size:13px;color:rgba(255,255,255,0.45);">© 2026 Callegari & Dias Advogados. Todos os direitos reservados.</span>
-            <span style="font-size:13px;color:rgba(255,255,255,0.45);">Em conformidade com o Provimento da OAB.</span>
+            <span style="font-size:13px;color:rgba(255,255,255,0.45);">Em conformidade com o Provimento da OAB e a LGPD.</span>
           </div>
         </div>
       </footer>
     </div>
+
+    <CookieConsent />
 
     <script is:inline>
       const nav = document.querySelector('.nav');
@@ -1400,6 +1438,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         if (!data.nome || !data.email || !data.mensagem) {
           if (formStatus) {
             formStatus.textContent = 'Preencha nome, e-mail e mensagem.';
+            formStatus.style.color = '#c75b43';
+          }
+          return;
+        }
+
+        if (!data.consentimento) {
+          if (formStatus) {
+            formStatus.textContent = 'É necessário concordar com a Política de Privacidade para enviar.';
             formStatus.style.color = '#c75b43';
           }
           return;

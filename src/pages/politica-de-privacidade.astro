@@ -1,0 +1,513 @@
+---
+export const prerender = true;
+
+import CookieConsent from '../components/CookieConsent.astro';
+
+const siteTitle = 'Política de Privacidade — Callegari & Dias Advocacia';
+const siteDescription = 'Política de Privacidade e Cookies do site Callegari & Dias Advocacia, em conformidade com a LGPD (Lei nº 13.709/2018).';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const lastUpdated = '27 de junho de 2026';
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f4f0e9;
+        --bg-strong: #0a2a31;
+        --teal: #0e3640;
+        --teal-deep: #103a43;
+        --accent: #c75b43;
+        --accent-soft: #e0a99b;
+        --text: #1c2326;
+        --muted: #5c666a;
+        --line: #d9d1c2;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Manrope', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img { max-width: 100%; display: block; }
+      a { color: inherit; }
+
+      .container {
+        width: min(900px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .nav-container {
+        width: min(1240px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        background: var(--bg-strong);
+        padding: 18px clamp(20px, 5vw, 72px);
+      }
+
+      .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(16px, 2vw, 32px);
+      }
+
+      .nav-link {
+        text-decoration: none;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .nav-link:hover { color: #fff; }
+
+      .button-primary {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        padding: 12px 22px;
+        border-radius: 2px;
+        transition: background 0.3s ease;
+      }
+
+      .button-primary:hover { background: #b04d37; }
+
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        color: #fff;
+        border-radius: 2px;
+      }
+
+      .mobile-panel {
+        display: none;
+      }
+
+      main {
+        padding: clamp(56px, 8vw, 96px) 0 clamp(80px, 10vw, 140px);
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 34px;
+        height: 1px;
+        background: var(--accent);
+        flex: 0 0 auto;
+      }
+
+      .eyebrow span {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        color: var(--accent);
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: 'Spectral', serif;
+        font-weight: 400;
+        font-size: clamp(32px, 4.4vw, 52px);
+        line-height: 1.1;
+        color: var(--teal-deep);
+        letter-spacing: -0.5px;
+      }
+
+      .updated-at {
+        margin-top: 14px;
+        font-size: 13.5px;
+        color: var(--muted);
+      }
+
+      .policy-intro {
+        margin-top: 30px;
+        font-size: 16.5px;
+        line-height: 1.85;
+        color: #4a5458;
+      }
+
+      article section {
+        margin-top: 56px;
+      }
+
+      article h2 {
+        font-family: 'Spectral', serif;
+        font-weight: 500;
+        font-size: clamp(22px, 2.6vw, 28px);
+        color: var(--teal-deep);
+        margin: 0 0 18px;
+      }
+
+      article h3 {
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        font-size: 15.5px;
+        color: var(--text);
+        margin: 26px 0 10px;
+      }
+
+      article p {
+        font-size: 16px;
+        line-height: 1.85;
+        color: #4a5458;
+        margin: 0 0 16px;
+      }
+
+      article ul {
+        margin: 0 0 16px;
+        padding-left: 22px;
+      }
+
+      article li {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #4a5458;
+        margin-bottom: 10px;
+      }
+
+      article strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .contact-card {
+        margin-top: 16px;
+        padding: 24px 28px;
+        background: #fff;
+        border-left: 3px solid var(--accent);
+        box-shadow: 0 20px 50px -30px rgba(10, 42, 49, 0.4);
+      }
+
+      .contact-card p { margin: 0 0 8px; }
+      .contact-card p:last-child { margin-bottom: 0; }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 56px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--teal-deep);
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 6px;
+      }
+
+      footer {
+        background: var(--bg-strong);
+        color: #fff;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 48px;
+        align-items: start;
+      }
+
+      .footer-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accent-soft);
+        margin-bottom: 20px;
+      }
+
+      .footer-bottom {
+        margin-top: clamp(40px, 5vw, 64px);
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      @media (max-width: 880px) {
+        .nav-links { display: none; }
+        .nav-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .mobile-panel:not([hidden]) {
+          display: grid;
+          width: 100%;
+          gap: 12px;
+          padding: 14px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(8, 40, 47, 0.96);
+          border-radius: 8px;
+          margin-top: 12px;
+        }
+        .mobile-panel a {
+          text-decoration: none;
+          color: rgba(255, 255, 255, 0.85);
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav" aria-label="Principal">
+      <div class="nav-container nav-bar">
+        <a href="/" aria-label="Callegari & Dias Advocacia">
+          <img src="/logo.svg" alt="Callegari & Dias Advogados" style="height: 24px; width: auto;" />
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7h16"></path>
+            <path d="M4 12h16"></path>
+            <path d="M4 17h16"></path>
+          </svg>
+        </button>
+        <div class="nav-links">
+          <a href="/#sobre" class="nav-link">Sobre</a>
+          <a href="/#areas" class="nav-link">Áreas de Atuação</a>
+          <a href="/#escritorio" class="nav-link">Nosso Espaço</a>
+          <a href="/#contato" class="nav-link">Contato</a>
+          <a href="/#contato" class="button-primary">Fale Conosco</a>
+        </div>
+      </div>
+      <div class="nav-container">
+        <div id="mobile-nav" class="mobile-panel" hidden>
+          <a href="/#sobre">Sobre</a>
+          <a href="/#areas">Áreas de Atuação</a>
+          <a href="/#escritorio">Nosso Espaço</a>
+          <a href="/#contato">Contato</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container">
+        <div class="eyebrow"><span>LGPD · Lei nº 13.709/2018</span></div>
+        <h1>Política de Privacidade e Cookies</h1>
+        <p class="updated-at">Última atualização: {lastUpdated}</p>
+
+        <p class="policy-intro">
+          A <strong>Callegari &amp; Dias Advocacia</strong> respeita a sua privacidade e está comprometida com a proteção dos dados pessoais de quem visita este site ou entra em contato conosco. Esta Política explica, de forma clara e transparente, quais dados coletamos, por que os coletamos, como os utilizamos e quais são os seus direitos, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD).
+        </p>
+
+        <article>
+          <section>
+            <h2>1. Quem é o controlador dos dados</h2>
+            <p>
+              O controlador dos dados pessoais tratados por meio deste site é:
+            </p>
+            <div class="contact-card">
+              <p><strong>Callegari &amp; Dias Advocacia</strong> — OAB/RS 9.970</p>
+              <p>Av. Bento Gonçalves, 708 — Salas 811 e 812, Centro, Viamão/RS · CEP 94410-400</p>
+              <p>E-mail: <a href="mailto:adv.guilhermecallegari@gmail.com">adv.guilhermecallegari@gmail.com</a></p>
+              <p>Telefone/WhatsApp: <a href="tel:+555130466706">+55 51 3046-6706</a></p>
+            </div>
+          </section>
+
+          <section>
+            <h2>2. Quais dados coletamos</h2>
+            <h3>2.1. Dados fornecidos voluntariamente por você</h3>
+            <p>
+              Quando você preenche o formulário de contato deste site, coletamos os dados que você nos informa: <strong>nome, e-mail, telefone e o conteúdo da sua mensagem</strong>. Esses dados são utilizados exclusivamente para responder à sua solicitação.
+            </p>
+            <h3>2.2. Dados técnicos de navegação</h3>
+            <p>
+              Este site carrega fontes tipográficas hospedadas pelo Google Fonts. Esse carregamento pode expor o seu endereço IP ao provedor do recurso, como ocorre em qualquer requisição feita pelo seu navegador a um servidor externo. Não utilizamos, atualmente, ferramentas de analytics, pixels de publicidade ou cookies de rastreamento de terceiros.
+            </p>
+          </section>
+
+          <section>
+            <h2>3. Cookies e tecnologias semelhantes</h2>
+            <p>
+              <strong>Atualmente, este site não utiliza cookies de rastreamento, publicidade ou análise de comportamento.</strong> O aviso de cookies exibido ao acessar o site serve para informar de forma transparente sobre esta política, conforme recomendado pela Autoridade Nacional de Proteção de Dados (ANPD), e para nos permitir lembrar a sua preferência de consentimento (armazenada localmente no seu navegador, via <em>localStorage</em>).
+            </p>
+            <p>
+              Caso, no futuro, adotemos cookies de análise (como Google Analytics) ou de publicidade, esta Política será atualizada e um novo consentimento será solicitado antes da ativação dessas tecnologias.
+            </p>
+          </section>
+
+          <section>
+            <h2>4. Finalidade do tratamento</h2>
+            <p>Utilizamos os dados pessoais coletados para:</p>
+            <ul>
+              <li>Responder às mensagens enviadas pelo formulário de contato;</li>
+              <li>Prestar esclarecimentos e, eventualmente, serviços jurídicos solicitados;</li>
+              <li>Cumprir obrigações legais e regulatórias aplicáveis à advocacia, inclusive normas da OAB;</li>
+              <li>Exercer direitos em processos judiciais, administrativos ou arbitrais, quando aplicável.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>5. Base legal para o tratamento</h2>
+            <p>O tratamento dos seus dados pessoais é realizado com base nas seguintes hipóteses legais previstas no art. 7º da LGPD:</p>
+            <ul>
+              <li><strong>Consentimento</strong> do titular, ao preencher e enviar voluntariamente o formulário de contato;</li>
+              <li><strong>Legítimo interesse</strong> do escritório para responder a solicitações de contato recebidas;</li>
+              <li><strong>Cumprimento de obrigação legal ou regulatória</strong>, quando aplicável à relação advogado-cliente;</li>
+              <li><strong>Exercício regular de direitos</strong> em processos judiciais, administrativos ou arbitrais.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>6. Compartilhamento de dados</h2>
+            <p>Não vendemos nem alugamos seus dados pessoais. Os dados podem ser compartilhados apenas nas seguintes situações:</p>
+            <ul>
+              <li>Com provedores de infraestrutura essenciais ao funcionamento do site e do envio de e-mails (como Google/Gmail, utilizado para o recebimento das mensagens do formulário de contato);</li>
+              <li>Com o Google Fonts, para o carregamento de fontes tipográficas;</li>
+              <li>Por determinação legal, ordem judicial ou requisição de autoridade competente.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>7. Armazenamento e retenção</h2>
+            <p>
+              As mensagens enviadas pelo formulário de contato são recebidas diretamente por e-mail e não são armazenadas em um banco de dados próprio deste site. Os dados são retidos pelo tempo necessário para o atendimento da sua solicitação e, quando aplicável, pelo prazo exigido por obrigações legais, contábeis ou regulatórias da advocacia, sendo posteriormente eliminados ou anonimizados.
+            </p>
+          </section>
+
+          <section>
+            <h2>8. Segurança da informação</h2>
+            <p>
+              Adotamos medidas técnicas e administrativas razoáveis para proteger os dados pessoais contra acessos não autorizados e situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou difusão, incluindo a transmissão de dados via conexão criptografada (HTTPS).
+            </p>
+          </section>
+
+          <section>
+            <h2>9. Seus direitos como titular de dados</h2>
+            <p>Nos termos do art. 18 da LGPD, você tem direito a:</p>
+            <ul>
+              <li>Confirmação da existência de tratamento de seus dados;</li>
+              <li>Acesso aos seus dados pessoais;</li>
+              <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
+              <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>
+              <li>Portabilidade dos dados a outro fornecedor de serviço, mediante requisição expressa;</li>
+              <li>Eliminação dos dados pessoais tratados com base no seu consentimento;</li>
+              <li>Informação sobre as entidades com as quais compartilhamos seus dados;</li>
+              <li>Informação sobre a possibilidade de não fornecer consentimento e as consequências;</li>
+              <li>Revogação do consentimento, a qualquer momento, mediante manifestação expressa.</li>
+            </ul>
+            <p>
+              Para exercer qualquer um desses direitos, entre em contato pelos canais indicados na seção 1 desta Política. Se não ficar satisfeito com a resposta, você também pode apresentar uma reclamação à Autoridade Nacional de Proteção de Dados (ANPD), através do site <a href="https://www.gov.br/anpd" target="_blank" rel="noreferrer">gov.br/anpd</a>.
+            </p>
+          </section>
+
+          <section>
+            <h2>10. Alterações nesta Política</h2>
+            <p>
+              Esta Política de Privacidade pode ser atualizada periodicamente para refletir melhorias no site ou mudanças na legislação aplicável. A data da última atualização está indicada no topo desta página. Recomendamos a revisão periódica deste documento.
+            </p>
+          </section>
+        </article>
+
+        <a href="/" class="back-link">← Voltar ao site</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container" style="width:min(1240px, calc(100% - 40px)); padding: clamp(56px, 6vw, 80px) 0;">
+        <div class="footer-grid">
+          <div style="max-width:300px;">
+            <img src="/logo.svg" alt="Callegari & Dias Advogados" style="height:30px;width:auto;" />
+            <p style="margin-top:22px;font-size:14px;line-height:1.7;color:rgba(255,255,255,0.6);">Advocacia especializada e humanizada, com compromisso ético e visão estratégica.</p>
+          </div>
+          <div>
+            <div class="footer-title">Navegação</div>
+            <div style="display:flex;flex-direction:column;gap:13px;">
+              <a href="/" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Início</a>
+              <a href="/#sobre" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Sobre</a>
+              <a href="/#areas" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Áreas de Atuação</a>
+              <a href="/#contato" style="text-decoration:none;font-size:14.5px;color:rgba(255,255,255,0.75);">Contato</a>
+              <a href="/politica-de-privacidade" style="text-decoration:none;font-size:14.5px;color:#fff;font-weight:700;">Política de Privacidade</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-title">Contato</div>
+            <div style="display:flex;flex-direction:column;gap:13px;font-size:14.5px;color:rgba(255,255,255,0.75);line-height:1.5;">
+              <span>Av. Bento Gonçalves, 708<br />Salas 811 e 812 — Viamão/RS</span>
+              <a href="tel:+555130466706" style="text-decoration:none;color:rgba(255,255,255,0.75);">+55 51 3046-6706</a>
+              <a href="mailto:adv.guilhermecallegari@gmail.com" style="text-decoration:none;color:rgba(255,255,255,0.75);word-break:break-all;">adv.guilhermecallegari@gmail.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span style="font-size:13px;color:rgba(255,255,255,0.45);">© 2026 Callegari &amp; Dias Advogados. Todos os direitos reservados.</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.45);">Em conformidade com o Provimento da OAB.</span>
+        </div>
+      </div>
+    </footer>
+
+    <CookieConsent />
+
+    <script is:inline>
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobilePanel = document.getElementById('mobile-nav');
+
+      navToggle?.addEventListener('click', () => {
+        const isOpen = mobilePanel.hasAttribute('hidden') === false;
+        if (isOpen) {
+          mobilePanel.setAttribute('hidden', '');
+          navToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          mobilePanel.removeAttribute('hidden');
+          navToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      mobilePanel?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobilePanel.setAttribute('hidden', '');
+          navToggle?.setAttribute('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+---
+---
+
+<div id="cookie-consent" class="cookie-consent" hidden>
+  <div class="cookie-consent-inner">
+    <p class="cookie-consent-text">
+      Usamos cookies e tecnologias semelhantes para garantir o funcionamento do site e melhorar sua experiência, em conformidade com a LGPD (Lei nº 13.709/2018). Ao continuar navegando, você concorda com nossa
+      <a href="/politica-de-privacidade">Política de Privacidade</a>.
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" class="cookie-consent-decline">Apenas essenciais</button>
+      <button type="button" class="cookie-consent-accept">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: #0a2a31;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -10px 40px -10px rgba(0, 0, 0, 0.4);
+    padding: 20px clamp(20px, 5vw, 72px);
+    transform: translateY(110%);
+    transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.32, 1);
+  }
+
+  .cookie-consent.is-visible {
+    transform: translateY(0);
+  }
+
+  .cookie-consent-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .cookie-consent-text {
+    margin: 0;
+    flex: 1 1 420px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .cookie-consent-text a {
+    color: #e0a99b;
+    text-decoration: underline;
+  }
+
+  .cookie-consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex: 0 0 auto;
+  }
+
+  .cookie-consent-decline,
+  .cookie-consent-accept {
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    border-radius: 2px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .cookie-consent-decline {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+  }
+
+  .cookie-consent-decline:hover {
+    border-color: #fff;
+  }
+
+  .cookie-consent-accept {
+    background: #c75b43;
+    color: #fff;
+  }
+
+  .cookie-consent-accept:hover {
+    background: #b04d37;
+  }
+
+  @media (max-width: 640px) {
+    .cookie-consent {
+      padding: 14px 16px;
+    }
+    .cookie-consent-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+    .cookie-consent-text {
+      flex: none;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .cookie-consent-actions {
+      gap: 8px;
+    }
+    .cookie-consent-decline,
+    .cookie-consent-accept {
+      flex: 1 1 0;
+      padding: 10px 12px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'cd_cookie_consent';
+    var banner = document.getElementById('cookie-consent');
+    if (!banner) return;
+
+    var stored = null;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      /* localStorage indisponível (modo privado, etc.) */
+    }
+
+    function setConsent(value) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({ choice: value, date: new Date().toISOString() }));
+      } catch (e) {
+        /* ignora se não puder persistir */
+      }
+      banner.classList.remove('is-visible');
+      setTimeout(function () {
+        banner.hidden = true;
+      }, 500);
+    }
+
+    if (!stored) {
+      banner.hidden = false;
+      requestAnimationFrame(function () {
+        banner.classList.add('is-visible');
+      });
+    }
+
+    banner.querySelector('.cookie-consent-accept')?.addEventListener('click', function () {
+      setConsent('accepted');
+    });
+    banner.querySelector('.cookie-consent-decline')?.addEventListener('click', function () {
+      setConsent('essential-only');
+    });
+  })();
+</script>
